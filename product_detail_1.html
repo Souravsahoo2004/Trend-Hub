@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details || TrendHub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="images/image logo.png" width="125px" alt="">
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Products</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Contact</a></li>
+                    <li><a href="">Account</a></li>
+                </ul>
+            </nav>
+            <img src="images/cart-symbol.png" id="menu-icon-cart" width="20px" height="20px" style="cursor: pointer;"
+                onclick="window.location.href=`Cart.html`;">
+            <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+        </div>
+    </div>
+
+    <!-- Single Product Details -->
+    <div class="small-container single-product">
+        <div class="row">
+            <div class="col-2">
+                <img src="" width="500px" height="400px" id="productimg" alt="Product Image">
+                <div class="small-img-row">
+                    <div class="small-img-col">
+                        <img src="" class="smallimg">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="" class="smallimg">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="" class="smallimg">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="" class="smallimg">
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+
+                <p>Product : <span id="ProId"
+                        style="font-weight: bold; font-size: 25px; color:rgb(231, 94, 19);">...</span></p>
+                <h1 id="productname"></h1>
+                <h4 id="productprice"></h4>
+                <select>
+                    <option>Select Size</option>
+                    <option>XXL</option>
+                    <option>XL</option>
+                    <option>Large</option>
+                    <option>Medium</option>
+                    <option>Small</option>
+                </select>
+                <input type="number" id="product-quantity" value="1" min="1" style="margin-top: 8px;">
+                <div id="btnCon">
+                    <a href="#" class="btn" id="add-to-cart-btn">Add to Cart</a>
+                    <a href="#" class="btn" id="BuyNow">Buy Now</a>
+                </div>
+                <h3>Product Details <i class="fa fa-indent"></i></h3>
+                <br>
+                <p id="productdescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Title -->
+    <div class="small-container">
+        <div class="row row-2">
+            <h2>Related Products</h2>
+            <P>View More</P>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    <div class="small-container">
+        <div class="row">
+            <div class="col-4" data-id="fdhkh6uf">
+                <img src="images/pexels-photo-6318922.jpeg" height="330px">
+                <h4>Dark Golden saree</h4>
+                <div class="description" style="display: none;">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, fugiat?
+                </div>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <p>$3000.00</p>
+            </div>
+
+            <div class="col-4" data-id="alskdjg6">
+                <img src="images/ball-pen-5930536_1280.jpg" height="330px">
+                <h4>Ball Pen </h4>
+                <div class="description" style="display: none;">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, fugiat?
+                </div>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>$15.00</p>
+            </div>
+            <div class="col-4" data-id="aswere3e">
+                <img src="images/retro-lampshade-1662061_1280.jpg" height="330px">
+                <h4>Table Lamp</h4>
+                <div class="description" style="display: none;">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, fugiat?
+                </div>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>$150.00</p>
+            </div>
+            <div class="col-4" data-id="bhuybhy7">
+                <img src="images/belts-193226_960_720.jpg" height="330px">
+                <h4>Belt</h4>
+                <div class="description" style="display: none;">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, fugiat?
+                </div>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>$50.00</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <div class="app-logo">
+                        <img src="images/get-it-on-play-store-button-and-apple-app-store-icon-vectorasdqwd.jpg">
+                        <img src="images/get-it-on-play-store-button-and-apple-app-store-icon-vectorswq.jpg">
+                    </div>
+                </div>
+
+                <div class="footer-col-2">
+                    <img src="images/image logojyhfuyy.png" width="100px" height="50px">
+                    <p>Our purpose is to provide a convenient platform for users to browse, select, and purchase
+                        products online.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Our Links</h3>
+                    <ul>
+                        <li>Privacy Policy</li>
+                        <li>Coupon Cards</li>
+                        <li>Join Us</li>
+                        <li>Our Latest Post</li>
+                        <li>Return Policy</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li>Twitter</li>
+                        <li>Facebook</li>
+                        <li>Instagram</li>
+                        <li>WhatsApp</li>
+                        <li>YouTube</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright 2024 - TrendHub</p>
+        </div>
+    </div>
+
+    <!-- JS for Toggle Menu -->
+    <script>
+
+        document.getElementById('add-to-cart-btn').addEventListener('click', function () {
+            const product = {
+                id: document.getElementById('ProId').textContent,
+                name: document.getElementById('productname').textContent,
+                price: document.getElementById('productprice').textContent,
+                quantity: parseInt(document.getElementById('product-quantity').value),
+                image: document.getElementById('productimg').src,
+                description: document.getElementById('productdescription').textContent
+            };
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            const existingProductIndex = cart.findIndex(item => item.id === product.id);
+            if (existingProductIndex !== -1) {
+                cart[existingProductIndex].quantity += product.quantity;
+            } else {
+                cart.push(product);
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert('Product added to cart!');
+        });
+
+
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Function to load product details
+        function loadProductDetails() {
+            const productId = getQueryParam('productId');
+            if (productId) {
+                const product = JSON.parse(localStorage.getItem('selectedProduct')); // Retrieve the single product object
+                if (product && product.id === productId) {
+                    document.getElementById('ProId').textContent = product.id;
+                    document.getElementById('productname').textContent = product.name;
+                    document.getElementById('productdescription').textContent = product.description;
+                    document.getElementById('productprice').textContent = product.price;
+                    document.getElementById('productimg').src = product.image;
+
+                    const smallImages = document.querySelectorAll('.smallimg');
+                    smallImages.forEach(img => img.src = product.image);
+                } else {
+                    alert('Product not found!');
+                }
+            } else {
+                alert('No product ID provided in URL!');
+            }
+        }
+
+        // Load product details on page load
+        window.onload = loadProductDetails;
+
+        document.getElementById('BuyNow').addEventListener('click',()=>{
+            const productQuantity=document.getElementById('product-quantity').value;
+            window.location.href=`product_summary.html?productId=${getQueryParam('productId')}&quantity=${productQuantity}`;
+        });
+
+        // Function to toggle menu
+        function menutoggle() {
+            var MenuItems = document.getElementById("MenuItems");
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+
+
+
+
+        const products = document.querySelectorAll('.small-container .col-4');
+
+        // Add click event listener to each product image
+        products.forEach(product => {
+            product.querySelector('img').addEventListener('click', function (event) {
+                const Pid = product.getAttribute('data-id');
+                const img = event.target.src;
+                const name = product.querySelector('h4').textContent;
+                const description = product.querySelector('.description').innerHTML;
+                const price = product.querySelector('p').textContent;
+                
+                
+                
+
+                // Create an object for the clicked product's details
+                const details = {
+                    id: Pid,
+                    image: img,
+                    name: name,
+                    description: description,
+                    price: price
+                };
+
+                // Store the clicked product details in localStorage
+                localStorage.setItem('selectedProduct', JSON.stringify(details));
+                // Redirect to product-details.html
+                window.location.href = `product_detail_1.html?productId=${Pid}`;
+            });
+        });
+        console.log(quty);
+
+    </script>
+</body>
+
+</html>

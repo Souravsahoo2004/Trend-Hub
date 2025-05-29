@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Summary</title>
+    <link rel="stylesheet" href="Product_summary.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="images/image logo.png" alt="Logo" class="logo">
+            <h2 id="temp">Order Summary</h2>
+            <div class="nav-icons" id="navI">
+                <img src="images/cart-symbol.png" alt="Cart" class="icon">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4QrnVXozia1yz_HM22j8AdrrlJHHv8B0Bzg&s"
+                    alt="About" class="icon">
+                <img src="https://st4.depositphotos.com/5040187/19701/v/1600/depositphotos_197015964-stock-illustration-logo-swoosh-global-red-letter.jpg"
+                    alt="T&C" class="icon">
+            </div>
+            <img src="images/menu.png" alt="Menu" class="menu-button" id="menuu" onclick="toggleMenu()">
+        </div>
+        <div class="product-summary">
+            <img id="summary-product-image" src="" alt="Product Image">
+            
+            <div class="summary-details">
+                <h2 id="summary-product-title">Product Title</h2>
+                <br>
+                <p id="summary-product-quantity">Quantity: 0</p> 
+                <br>
+                <p id="summary-product-description">Product description goes here...</p>
+            </div>
+        </div>
+        <div class="price-details">
+            <h3>Price Details</h3>
+            <div class="price-row">
+                <span>Price</span><span id="summary-product-price">$0</span>
+            </div>
+            <div class="price-row">
+                <span>Discount</span><span id="summary-product-discount">-$0</span>
+            </div>
+            <div class="price-row">
+                <span>Delivery Charges</span><span id="summary-delivery-charge">$0</span>
+            </div>
+            <hr>
+            <div class="price-row total">
+                <h3>Total</h3>
+                <h3 id="summary-total">$0</h3>
+            </div>
+        </div>
+        <div class="footer">
+            <button class="btn cancel" id="cancel">Cancel</button>
+            <button class="btn continue" id="continue">Continue</button>
+        </div>
+    </div>
+
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        function loadProductDetails() {
+            const productId = getQueryParam('productId');
+            const productQuantity = getQueryParam('quantity');
+            if (productId) {
+                const product = JSON.parse(localStorage.getItem('selectedProduct'));
+                if (product && product.id === productId) {
+                    document.getElementById('summary-product-title').textContent = product.name;
+                    document.getElementById('summary-product-quantity').textContent = `Quantity: ${productQuantity}`;
+                    
+                    document.getElementById('summary-product-description').textContent = product.description;
+                    document.getElementById('summary-product-price').textContent = product.price;
+                    document.getElementById('summary-product-image').src = product.image;
+
+                    const price = parseFloat(product.price.replace('$', ''));
+                    const discount = 10;
+                    const deliveryCharge = price < 300 ? 50 : 0;
+                    const total = price - discount + deliveryCharge;
+
+                    document.getElementById('summary-product-discount').textContent = `-$${ discount }`;
+                    document.getElementById('summary-delivery-charge').textContent = `$${ deliveryCharge }`;
+                    document.getElementById('summary-total').textContent = `$${ total }`;
+
+                    product.to = parseFloat(total); // Add total to selectedProduct
+                    localStorage.setItem('selectedProduct', JSON.stringify(product)); 
+
+                } else {
+                    alert('Product not found!');
+                }
+            } else {
+                alert('No product ID provided in URL!');
+            }
+        }
+
+        function toggleMenu() {
+            const navIcons = document.querySelector('.nav-icons');
+            navIcons.style.display = navIcons.style.display === 'flex' ? 'none' : 'flex';
+            document.getElementById('temp').style.display='none';
+            document.getElementById('menuu').style.display='none';
+            
+        }
+
+        document.getElementById('cancel').addEventListener('click',()=>{
+            window.location.href=`product_detail_1.html?productId=${getQueryParam('productId')}`;
+        });
+        document.getElementById('continue').addEventListener('click',()=>{
+            window.location.href=`Payment.html?productId=${getQueryParam('productId')}&quantity=${getQueryParam('quantity')}`;
+        });
+
+        window.onload = loadProductDetails;
+    </script>
+</body>
+
+</html>

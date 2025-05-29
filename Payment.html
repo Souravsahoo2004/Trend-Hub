@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <link rel="stylesheet" href="payment.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="payment-page">
+            <header>
+                <a href="#" class="back-button">&larr;</a>
+                <h1>Step 3 of 3</h1>
+                <div class="secure">100% Secure</div>
+            </header>
+            <section class="amount-section">
+                <div class="amount-details">
+                    <h2>Total Amount</h2>
+                    <span class="amount" id="summary-total-amount">$0</span>
+                    <span class="discount" id="summary-discount">10% instant discount</span>
+                </div>
+                <button class="claim-button">Claim now with payment offers</button>
+            </section>
+            <section class="payment-options">
+                <div class="option">
+                    <div class="option-header">
+                        <img src="https://thumbs.dreamstime.com/b/upi-letter-initial-logo-design-vector-illustration-letter-initial-logo-design-vector-illustration-upi-letter-initial-logo-design-236642312.jpg"
+                            alt="Flipkart UPI">
+                        <span>Flipkart UPI <span class="new">New</span></span>
+                        <span class="discount">₹50 discount applicable. <a href="#">Details</a></span>
+                    </div>
+                    <button class="pay-button">Add Bank and Pay</button>
+                </div>
+                <div class="option">
+                    <div class="option-header">
+                        <img src="https://img.freepik.com/free-vector/realistic-credit-card-design_23-2149126088.jpg"
+                            alt="Credit/Debit Card">
+                        <span>Credit / Debit / ATM Card</span>
+                        <button class="expand-button">&or;</button>
+                    </div>
+                    <div class="option-content">
+                        <span>Add and secure cards as per RBI guidelines</span>
+                        <span>5% Cashback on Flipkart Axis Bank Card</span>
+                    </div>
+                </div>
+                <div class="option">
+                    <div class="option-header">
+                        <img src="https://static.vecteezy.com/system/resources/previews/009/219/815/original/emi-letter-logo-design-on-black-background-emi-creative-initials-letter-logo-concept-emi-letter-design-vector.jpg"
+                            alt="EMI">
+                        <span>EMI</span>
+                        <button class="expand-button">&or;</button>
+                    </div>
+                    <div class="option-content">
+                        <span>Get Debit and Cardless EMIs on HDFC Bank</span>
+                    </div>
+                </div>
+                <div class="option">
+                    <div class="option-header">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwvjrjoZnord6W3t9JtI44aUE2-LLtXruvbw&s"
+                            alt="Net Banking">
+                        <span>Net Banking</span>
+                        <button class="expand-button">&or;</button>
+                    </div>
+                </div>
+                <div class="option">
+                    <div class="option-header">
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTED55gurC9OU_ebvCh2s9HuOHYlkV0dvwlUg&s">
+                        <span>Wallets</span>
+                        <button class="expand-button">&or;</button>
+                    </div>
+                </div>
+                <div class="option">
+                    <div class="option-header">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_xXUKKQGKhk8W_PrKGZZN37fKykZJHCvXPQ&s"
+                            alt="UPI">
+                        <span>UPI</span>
+                        <button class="expand-button">&or;</button>
+                    </div>
+                    <div class="option-content">
+                        <span>Pay by any UPI app</span>
+                    </div>
+                </div>
+                <div class="option">
+                    <div class="option-header">
+                        <img src="https://i.pinimg.com/736x/ab/b5/2c/abb52c0ac3fb3c96ebde3207c8992a02.jpg"
+                            alt="Cash on Delivery">
+                        <span>Cash on Delivery</span>
+                        <button class="expand-button">&or;</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        function loadProductDetails() {
+            const productId = getQueryParam('productId');
+            if (productId) {
+                const product = JSON.parse(localStorage.getItem('selectedProduct'));
+                if (product && product.id === productId) {
+                    const price = parseFloat(product.price.replace('$', ''));
+                    const discount = 10;
+                    const totally=parseFloat(product.to);
+
+                    document.getElementById('summary-total-amount').textContent = `₹${totally.toFixed(2)}`;
+                    document.getElementById('summary-discount').textContent = `₹${discount} instant discount`;
+                } else {
+                    alert('Product not found!');
+                }
+            } else {
+                alert('No product ID provided in URL!');
+            }
+        }
+
+        window.onload = loadProductDetails;
+    </script>
+</body>
+
+</html>

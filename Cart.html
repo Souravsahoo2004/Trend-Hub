@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProductCart || TrendHub</title>
+    <link rel="stylesheet" href="Cart.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="images/image logo.png" width="125px" alt="">
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="">Products</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Contact</a></li>
+                    <li><a href="">Account</a></li>
+                </ul>
+            </nav>
+            <img src="images/cart-symbol.png" id="menu-icon-cart" width="20px" height="20px">
+            <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+        </div>
+    </div>
+    
+    <div class="small-container cart-page">
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+            <tbody id="cart-items">
+                
+            </tbody>
+        </table>
+        <div id="cart-summary">
+            <div class="total-price">
+                <table>
+                    <tr>
+                        <td>Subtotal</td>
+                        <td id="subtotal" style="font-weight: bold;">$0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Delivery Charge</td>
+                        <td id="delivery-charge">$50.00</td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td id="total" style="font-weight: bold;">$50.00</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="empty-cart-message">
+            <p>You do not have any cart items</p>
+            <a href="index.html" class="visit-buy-btn">Go to Visit & Buy</a>
+        </div>
+    </div>
+
+    
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <div class="app-logo">
+                        <img src="images/get-it-on-play-store-button-and-apple-app-store-icon-vectorasdqwd.jpg">
+                        <img src="images/get-it-on-play-store-button-and-apple-app-store-icon-vectorswq.jpg">
+                    </div>
+                </div>
+
+                <div class="footer-col-2">
+                    <img src="images/image logojyhfuyy.png" width="100px" height="50px">
+                    <p>Our purpose is to provide a convenient platform for users to browse, select, and purchase
+                        products online.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Our Links</h3>
+                    <ul>
+                        <li>Privacy Policy</li>
+                        <li>Coupon Cards</li>
+                        <li>Join Us</li>
+                        <li>Our Latest Post</li>
+                        <li>Return Policy</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li>Twitter</li>
+                        <li>Facebook</li>
+                        <li>Instagram</li>
+                        <li>WhatsApp</li>
+                        <li>YouTube</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright 2024 - TrendHub</p>
+        </div>
+    </div>
+
+    
+    <script>
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+
+       
+        function loadCartItems() {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartSummary = document.getElementById('cart-summary');
+            const emptyCartMessage = document.getElementById('empty-cart-message');
+            let subtotal = 0;
+
+            if (cartItems.length > 0) {
+                cartSummary.style.display = 'block';
+                emptyCartMessage.style.display = 'none';
+
+                cartItems.forEach((item) => {
+                    
+                    const priceString = item.price ? item.price.replace(/[^0-9.]/g, '').trim() : '0';
+                    const price = parseFloat(priceString);
+
+                    
+                    if (isNaN(price)) {
+                        console.error(`Invalid price for item ${item.name}: ${item.price}`);
+                        return;
+                    }
+
+                    const itemRow = document.createElement('tr');
+
+                    itemRow.innerHTML = `
+                        <td id="ProdHol">
+                            <div class="cart-info">
+                                <img src="${item.image}" alt="${item.name}" class="product-row" data-id="${item.id}">
+                                <div>
+                                    <p>${item.name}</p>
+                                    <small style="font-weight: bold; color='#8b008b';">Price : $${price.toFixed(2)}</small>
+                                    <br>
+                                    <small style="font-weight: bold;" data-id="${item.id}">Product Id : ${item.id}</small>
+                                    <br>
+                                    <a href="#" class="remove-item" data-name="${item.name}">Remove</a>
+                                </div>
+                            </div>
+                        </td>
+                        <td><input type="number" value="${item.quantity}" class="quantity" data-name="${item.name}"></td>
+                        <td>$${(price * item.quantity).toFixed(2)}</td>
+                    `;
+
+                    subtotal += price * item.quantity;
+
+                    cartItemsContainer.appendChild(itemRow);
+                });
+
+                document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+                document.getElementById('total').textContent = `$${(subtotal + 50).toFixed(2)}`;
+            } else {
+                cartSummary.style.display = 'none';
+                emptyCartMessage.style.display = 'block';
+            }
+
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', removeItem);
+            });
+
+            document.querySelectorAll('.quantity').forEach(input => {
+                input.addEventListener('change', updateQuantity);
+            });
+
+            document.querySelectorAll('.product-row').forEach(row => {
+                row.addEventListener('click', redirectToProductDetails);
+            });
+
+        }
+
+        function removeItem(event) {
+            const itemName = event.target.getAttribute('data-name');
+            let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+            cartItems = cartItems.filter(item => item.name !== itemName);
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            location.reload();
+        }
+
+        function updateQuantity(event) {
+            const itemName = event.target.getAttribute('data-name');
+            const newQuantity = parseInt(event.target.value);
+            let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+            cartItems = cartItems.map(item => {
+                if (item.name === itemName) {
+                    item.quantity = newQuantity;
+                }
+                return item;
+            });
+
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            location.reload();
+        }
+
+        function redirectToProductDetails(event) {
+            const productId = event.currentTarget.getAttribute('data-id');
+            window.location.href = `product_detail_1.html?productId=${productId}`;
+        }
+
+        
+        loadCartItems();
+    </script>
+</body>
+
+</html>
